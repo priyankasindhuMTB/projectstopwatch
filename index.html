@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+
+        }
+        body{
+            height:600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           background-color: crimson;
+
+            
+            
+        }
+        .key{
+               border:2px solid black;
+                width:35%;
+                height:200px;
+                border-radius: 50px;
+                background:linear-gradient(#445,#99ed);
+
+            
+              
+        }
+        .timedisplay{
+                    font-size:50px;
+                    display:flex;
+                    justify-content: center;
+                  
+                    
+                  
+                 
+        }
+        .btn{
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                border: none;
+               
+
+        }
+        button{
+                font-size:30px;
+                display: flex;
+                justify-items: center;
+                
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="key">
+      
+        <div class="timedisplay">00:00:00</div>
+        <div class="btn">
+        <button type="button" style="background-color:crimson;" id="butn">reset</button>
+        <button type="button" style="background-color: darkgoldenrod;" id="input">stop</button>
+        <button type="button" style="background-color: green;" id="key">start</button>
+    </div>
+    </div>
+    <script>
+                    let display=document.querySelector(".timedisplay")
+                    let reset=document.getElementById("butn")
+                    let stop=document.getElementById("input")
+                    let start=document.getElementById("key")
+                    let millisecond=0
+                    let sec=0
+                    let minute=0
+                    let timer=null;
+                    start.addEventListener('click',function(e){
+                  
+                        if (timer!==null) {
+                        clearInterval(timer)
+                   }
+                     timer=setInterval(add,10)
+                    })
+                
+                    function add() {
+                        millisecond++
+                        if(millisecond=="100") {
+                          millisecond=0;
+                          sec++
+                  }else if(sec=="60") {
+                           sec=0; 
+                            minute++
+                            console.log(minute)
+
+                        }
+                   
+                        let f=(millisecond<"10")?`0${millisecond}`:`${millisecond}`
+                        let g=(sec<"10")?`0${sec}`:`${sec}`
+                        let h=(minute<"10")?`0${minute}`:`${minute}`
+                        
+                        display.innerHTML=`${h}:${g}:${f}`
+               
+                 
+                      }
+                        stop.addEventListener('click',function(e){
+                        clearInterval(timer)
+
+                      })
+                          reset.addEventListener('click',function(e){
+                          clearInterval(timer)
+                          display.innerHTML="00:00:00"
+                           millisecond=0
+                           sec=0
+                           minute=0
+                           
+                          })
+
+                   
+    </script>
+</body>
+</html>
+             
+                
+
+               
+                 
+                 
+
+        
+              
+
+              
+                
